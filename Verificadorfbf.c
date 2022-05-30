@@ -1,6 +1,6 @@
 //Programa que  diz se a formula e bem formada ou nao 
 // o programa deve ler  a formula e assegurar se ela  bem formada ou nao*/
-
+//Univasf Logica para programção
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
