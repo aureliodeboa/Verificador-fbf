@@ -1,8 +1,6 @@
 //Programa que  diz se a formula e bem formada ou nao 
-/* o programa deve ler  a formula e assegurar se ela  bem formada ou nao*/
-/*DICIONARIO DE SIMBOLOS
+// o programa deve ler  a formula e assegurar se ela  bem formada ou nao*/
 
-*/
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -33,50 +31,51 @@ int prop(char *str1)
             {
                 return 1; //se for do tipo P,Q,R,S,X,U,0,1,~P,~Q,~R,~S,~X,~U;
             }
-return 0;
+return 0; //se nao for 0
 
 
 }
-int valido(char c)
+int valido(char c) // analisa se é um caracter valido, ou seja se pertece ao dicionario de simbolos
 {
      if(c=='1'||c=='0'||c=='S'||c=='R'||c=='U'||c=='X'||c=='Q'||c=='P'||c=='('||c=='v'||c=='&'||c=='>'||c=='='||c=='~') // o (  é para informar que foi aberto e nao parar o programa se tiver ex: ~(PvQ)
     {
-        return 1;
+        return 1; //retorna 1 se sim
     }
     else
     {
-        return 0;
+        return 0; //retorna 0 se nao
     }
 }
-int propc(char c)
+int propc(char c) //função quer retorna 1 se o caracter faz é por se so um fbf
 {
     if(c=='1'||c=='0'||c=='S'||c=='R'||c=='U'||c=='X'||c=='Q'||c=='P'||c=='(') // o (  é para informar que foi aberto e nao parar o programa se tiver ex: ~(PvQ)
     {
-        return 1;
+        return 1; //retorna 1 se sim
     }
     else
     {
-        return 0;
+        return 0; //retona 0 se nao
     }
 }
-int input()
+
+int input() //fução principal de entrada e verificação
 {
     /*retornar 1 se for bem formada, 0 para finalizar o programa e 2 para nao bem formada*/
-    char str1[200],*p,str2[200];
-    int i=0,aux=strlen(str1),pa=0,pf=0;
+    char str1[200];
+    int i=0,aux=strlen(str1),pa=0,pf=0; // pa= parenteses abertos pf= parenteses fechados
      
 
-      gets(str1); 
+      gets(str1); // entrada da formula
 
     
     
-        if(strcmp(str1,"sair"))
+        if(strcmp(str1,"sair")) //verifica se o usuario quer sair do programa
         {
-         if(prop(&str1))
+         if(prop(&str1)) //verifica se é uma fbf de 2 cacteres no maximo
             {
                 
                 
-                return 1;
+                return 1; // 1 se sim 
                 
             }
             
@@ -84,17 +83,17 @@ int input()
         else
             {
 
-              for(i=0;i<aux;i++)
+              for(i=0;i<aux;i++) //for que irar pecorrer toda a string caracter por caracter
                {
-                   if(valido(str1[i]))
+                   if(valido(str1[i])) // verifica se é um carcter valido
                    {
-                            if (str1[i]=='(')
+                            if (str1[i]=='(') //verifica se abriu o parenteses
                             {
                                  pa++;
                             }
                             else
                             {
-                                if (str1[i]==')')
+                                if (str1[i]==')') //verfica se fechou o parenteses
                                 {
                                     pf++;
                                 }
@@ -102,11 +101,11 @@ int input()
                    
                    
                    
-                        if (str1[i]=='~')
+                        if (str1[i]=='~') //verifica se nao tem so o negado
                         {
                                 if (!propc(str1[i+1]))
                                 {
-                                     return 2;
+                                     return 2; //caso haja configurações do tipo ~v; ~&  retorna 2 que é fomula mal formada
                                 }
                        
                          }
@@ -114,15 +113,15 @@ int input()
                         {
                              if ((propc(str1[i])&&propc(str1[i+1]))||(propc(str1[i])&&str1[i+1]=='~'))//trata PQ e P~Q
                                 {
-                                         return 2;
+                                         return 2; //caso verdaddeiro
                                 }
                             else
                                 {
-                                    if(str1[i]=='v'||str1[i]=='&'||str1[i]=='>'||str1[i]=='=')
+                                    if(str1[i]=='v'||str1[i]=='&'||str1[i]=='>'||str1[i]=='=') //verfica se o carcter posterior ao conectivos é um simbolo proposicional.
                                         {
-                                            if(!propc(str1[i-1])&&!propc(str1[i+1]))
+                                            if(!propc(str1[i-1])&&!propc(str1[i+1])) 
                                              {
-                                                return 2;
+                                                return 2; 
                                              }
                                         }
                                 }
@@ -133,22 +132,22 @@ int input()
                    }
                    else
                    {
-                       return 2; //cacter invalido
+                       return 3; //cacter invalido
                    }
                 
                    
                } 
 
 
-            if(pa!=pf)
+            if(pa!=pf) // se quantidade de parenteses abertos for diferente dos fechados
             {
-                return 2;
+                return 2; //se diferente entao mau formado
             }  
             
                
                  
                    
-               return 1;        
+               return 1;        //caso ele passou por todos esses testes e nao retornou 2, então é FBF
             }
 
 
@@ -172,8 +171,18 @@ void output (int i)
         }
         else
         {
-            printf("\n Nao e uma formula bem formada \n");
+                if(i==2)
+                {
+                    printf("\n Nao e uma formula bem formada \n");
+                }
+                else
+                {
+                    
+                    printf("\n Caracteres nao validos \n");
+                    
+                }  
         }
+        
     }
     system("pause");
     system("cls");
