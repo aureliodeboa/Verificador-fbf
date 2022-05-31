@@ -37,7 +37,7 @@ return 0; //se nao for 0
 }
 int valido(char c) // analisa se é um caracter valido, ou seja se pertece ao dicionario de simbolos
 {
-     if(c=='1'||c=='0'||c=='S'||c=='R'||c=='U'||c=='X'||c=='Q'||c=='P'||c=='('||c=='v'||c=='&'||c=='>'||c=='='||c=='~') // o (  é para informar que foi aberto e nao parar o programa se tiver ex: ~(PvQ)
+     if(c=='1'||c=='0'||c=='S'||c=='R'||c=='U'||c=='X'||c=='Q'||c=='P'||c=='('||c=='v'||c=='&'||c=='>'||c=='='||c=='~'||c==')') // o (  é para informar que foi aberto e nao parar o programa se tiver ex: ~(PvQ)
     {
         return 1; //retorna 1 se sim
     }
@@ -114,6 +114,7 @@ int input() //fução principal de entrada e verificação
                              if ((propc(str1[i])&&propc(str1[i+1]))||(propc(str1[i])&&str1[i+1]=='~'))//trata PQ e P~Q
                                 {
                                          return 2; //caso verdaddeiro
+                                         
                                 }
                             else
                                 {
@@ -121,7 +122,9 @@ int input() //fução principal de entrada e verificação
                                         {
                                             if(!propc(str1[i-1])&&!propc(str1[i+1])) 
                                              {
+                                                
                                                 return 2; 
+                                                
                                              }
                                         }
                                 }
@@ -132,7 +135,7 @@ int input() //fução principal de entrada e verificação
                    }
                    else
                    {
-                       return 3; //cacter invalido
+                       return 3; //caracter invalido
                    }
                 
                    
@@ -171,16 +174,18 @@ void output (int i)
         }
         else
         {
-                if(i==2)
+
+              printf("\n Nao e uma formula bem formada \n");
+                /*if(i==2)
                 {
-                    printf("\n Nao e uma formula bem formada \n");
+                     printf("\n Nao e uma formula bem formada \n");
                 }
                 else
                 {
-                    
-                    printf("\n Caracteres nao validos \n");
-                    
+                   // printf("\n CARACTER \n");
                 }  
+                */
+                
         }
         
     }
